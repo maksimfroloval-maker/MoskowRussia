@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moscow Russia — Начни игру</title>
+    <style>
+        /* Общие стили и сброс настроек */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0c;
+            color: #ffffff;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* Шапка сайта */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e50914;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            border-radius: 8px;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 20px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            display: block;
+            color: #ffffff;
+        }
+
+        /* Кнопка-меню (Инструкция) */
+        .burger-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.2s;
+        }
+
+        .burger-menu:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .burger-text {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .burger-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .burger-lines div {
+            width: 22px;
+            height: 3px;
+            background-color: #e50914;
+            border-radius: 2px;
+        }
+
+        /* Главный контейнер */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Промо-блок / Баннер */
+        .hero {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 span {
+            color: #e50914;
+            display: block;
+            font-size: 36px;
+        }
+
+        .hero p {
+            color: #aaaaaa;
+            font-size: 16px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        /* Блок загрузки */
+        .download-box {
+            background: linear-gradient(135deg, #1c1c1e 0%, #121214 100%);
+            border: 1px solid #2c2c2e;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-download {
+            display: block;
+            background-color: #e50914;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+            margin-bottom: 15px;
+        }
+
+        .btn-download:hover {
+            background-color: #b8070f;
+            transform: translateY(-2px);
+        }
+
+        .btn-download:active {
+            transform: translateY(0);
+        }
+
+        .requirements {
+            font-size: 12px;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Информационный блок игры */
+        .info-section {
+            margin-bottom: 40px;
+        }
+
+        .info-section h2 {
+            font-size: 26px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .info-section h2 span {
+            color: #e50914;
+        }
+
+        .info-section p {
+            color: #cdcdd2;
+            font-size: 15px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Блок со счетчиком и описанием бесплатности */
+        .stats-box {
+            background-color: #121214;
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border: 1px solid #1c1c1e;
+        }
+
+        .stats-icon {
+            width: 8px;
+            height: 8px;
+            background-color: #30d158;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #30d158;
+        }
+
+        .stats-count {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .free-text {
+            color: #8e8e93;
+            font-size: 13px;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        /* Кнопки социальных сетей */
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #1c1c1e;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid #2c2c2e;
+            transition: background-color 0.2s;
+        }
+
+        .btn-social:hover {
+            background-color: #2c2c2e;
+        }
+
+        /* Подвал */
+        footer {
+            border-top: 1px solid #1c1c1e;
+            padding-top: 25px;
+            color: #636366;
+            font-size: 13px;
+        }
+
+        .copyright {
+            margin-bottom: 15px;
+        }
+
+        /* Заглушки платежных систем */
+        .payments {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            opacity: 0.4;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА (ИНСТРУКЦИИ) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+background: linear-gradient(135deg, #1c1c1e 0%, #121214 100%);
+            border: 1px solid #2c2c2e;
+            padding: 30px 20px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #8e8e93;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #e50914;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            font-size: 15px;
+            color: #cdcdd2;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .modal-text strong {
+            color: #ffffff;
+        }
+
+        /* Стилизация отображения APK файла из скриншота */
+        .file-preview {
+            background-color: #151517;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #2c2c2e;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .file-icon-box {
+            width: 48px;
+            height: 48px;
+            background-color: #adc4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-icon-box svg {
+            width: 22px;
+            height: 22px;
+            fill: #102a63;
+        }
+
+        .file-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffffff;
+            word-break: break-all;
+        }
+
+        .file-size {
+            font-size: 13px;
+            color: #8e8e93;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">
+                <span>MOSCOW</span>
+                <span>RUSSIA</span>
+            </div>
+        </div>
+        <div class="burger-menu" id="openInstruction">
+            <span class="burger-text">Инструкция</span>
+            <div class="burger-lines">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="hero">
+            <h1>Начните игру на <span>Moscow Russia</span></h1>
+            <p>Уникальный проект, который дарит вам полную свобову действий и выбор собственного пути.</p>
+        </section>
+
+        <div class="download-box">
+            <a href="https://t.me/%2BEq0XrmtWWIUyNDcy" class="btn-download" target="_blank">Скачать с сайта</a>
+            <div class="requirements">Требуется Android 6.1 и выше</div>
+        </div>
+
+        <section class="info-section">
+            <h2>Твой путь — <span>Твои правила</span></h2>
+            <p>Собери банду или организацию, займись преступными делами... Но всегда есть возможность перейти на светлую сторону. В любой момент ты можешь стать участником силовых структур и начать поддерживать порядок в штате, проворачивая громкие аресты гангстеров!</p>
+        </section>
+
+        <section class="hero" style="margin-top: 40px;">
+            <h1>Скачай <span>наш лаунчер</span> и начни играть!</h1>
+14:19
+<p>Играть на нашем проекте очень просто. Достаточно скачать наш лаунчер, который сам установит все необходимые компоненты игры.</p>
+        </section>
+
+        <div class="download-box">
+            <a href="https://t.me/%2BEq0XrmtWWIUyNDcy" class="btn-download" target="_blank">Скачать с сайта</a>
+            <div class="requirements">Требуется Android 6.1</div>
+        </div>
+
+        <div class="stats-box">
+            <div class="stats-icon"></div>
+            <div>Игроков: <span class="stats-count">712</span></div>
+        </div>
+
+        <p class="free-text">Игра бесплатная и не требует денежных средств. Однако в игре предусмотрена возможность приобретения внутриигровых предметов, валюты, игровых статусов для наиболее разнообразного геймплея на наших серверах.</p>
+
+        <div class="social-buttons">
+            <a href="#" class="btn-social">
+                <span>Discord</span>
+            </a>
+            <a href="https://t.me/%2BEq0XrmtWWIUyNDcy" class="btn-social" target="_blank">
+                <span>Telegram</span>
+            </a>
+            <a href="#" class="btn-social">
+                <span>ВКонтакте</span>
+            </a>
+        </div>
+
+        <footer>
+            <div class="copyright">Copyright © 2026 Moscow Russia. Все права защищены.</div>
+            <div class="payments">
+                <span>VISA</span>
+                <span>MASTERCARD</span>
+                <span>МИР</span>
+                <span>СБП</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <div class="modal-overlay" id="instructionModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeInstruction">&times;</button>
+            <div class="modal-title">Инструкция по установке</div>
+            <p class="modal-text">Чтобы скачать <strong>Moscow Russia</strong>, вам необходимо нажать на кнопку <strong>«Скачать с сайта»</strong> и загрузить следующий файл на ваш смартфон:</p>
+            
+            <div class="file-preview">
+                <div class="file-icon-box">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <div class="file-info">
+                    <span class="file-name">KRANIN GAMES__signed.apk</span>
+                    <span class="file-size">111,2 MB • APK</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const openBtn = document.getElementById('openInstruction');
+        const closeBtn = document.getElementById('closeInstruction');
+        const modal = document.getElementById('instructionModal');
+
+        // Открыть окно
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Запретить прокрутку сайта под окном
+        });
+
+        // Закрыть окно при клике на крестик
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Закрыть окно при клике на область вокруг окна
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+</html>
